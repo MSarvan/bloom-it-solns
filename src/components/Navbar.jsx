@@ -10,7 +10,8 @@ const Navbar = () => {
 
   return (
     <nav>
-      <h2 onClick={handleClick}>Movie App</h2>
+      <h2>Movie App</h2>
+      <button onClick={handleClick}>Home</button>
     </nav>
   );
 };
