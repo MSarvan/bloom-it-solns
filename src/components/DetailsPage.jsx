@@ -45,19 +45,20 @@ const DetailsPage = () => {
       {isLoading ? (
         <>
           <div className="movie-poster">
-            <div style={{ width: "100%", height: "100%" }}>
-              <Skeleton width={"100%"} height={"100%"} />
-            </div>
+            <Skeleton containerClassName="image-loader" />
           </div>
           <div className="movie-details">
-            <Skeleton width={"100%"} height={30} />
-            <Skeleton width={"100%"} height={30} />
-            <Skeleton width={"100%"} height={30} />
-            <Skeleton width={"100%"} height={80} />
-            <Skeleton width={"100%"} height={30} />
-            <Skeleton width={"100%"} height={30} />
-            <Skeleton width={"100%"} height={30} />
-            <Skeleton width={100} height={30} />
+            <Skeleton containerClassName="movie-details1" />
+            <Skeleton containerClassName="movie-details2" />
+            <Skeleton containerClassName="movie-details3" />
+            <Skeleton containerClassName="movie-details2" />
+            <Skeleton containerClassName="movie-details2" />
+            <Skeleton containerClassName="movie-details2" />
+            <Skeleton
+              width={100}
+              height={30}
+              containerClassName="movie-details-btn"
+            />
           </div>
         </>
       ) : (

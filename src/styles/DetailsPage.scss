@@ -4,6 +4,7 @@
   padding: 2rem;
   display: flex;
   justify-content: space-between;
+  overflow-y: scroll;
 
   .movie-poster {
     width: 40%;
@@ -13,6 +14,16 @@
     img {
       border: 1px solid #ddd;
       border-radius: 10px;
+    }
+
+    .image-loader {
+      height: 100%;
+      width: 100%;
+
+      span {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 
@@ -32,5 +43,98 @@
       background: black;
       border-radius: 10px;
     }
+
+    .movie-details1 {
+      width: 70%;
+      height: 60px;
+      span {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .movie-details2 {
+      width: 90%;
+      height: 35px;
+      span {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .movie-details3 {
+      width: 85%;
+      height: 200px;
+      span {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .movie-poster {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
+
+    .movie-poster {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+
+      .image-loader {
+        height: 30vh;
+        span {
+          height: 100%;
+        }
+      }
+
+      img {
+        max-width: 100%;
+        height: 100%;
+      }
+    }
+
+    .movie-details {
+      width: 100%;
+      height: auto;
+      overflow-y: initial;
+      align-items: center;
+      text-align: center;
+
+      .movie-details-btn {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .movie-poster {
+      .image-loader {
+        height: 40vh;
+      }
+    }
+
+    .movie-details {
+      .movie-details3 {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 375px) {
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 320px) {
+    padding: 2rem 0.5rem;
   }
 }
