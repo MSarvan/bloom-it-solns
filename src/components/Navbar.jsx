@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import "../styles/Navbar.scss";
 
 const Navbar = () => {
   return (
-    <div>My Movie App</div>
-  )
-}
+    <nav>
+      <h2>Movie App</h2>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
