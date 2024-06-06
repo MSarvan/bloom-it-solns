@@ -35,7 +35,7 @@ const HomePage = () => {
               <div className="movie-image">
                 <img src={e?.Poster} alt="" />
               </div>
-              <div>{e?.Title}</div>
+              <h3>{e?.Title}</h3>
               <div>{e?.Year}</div>
             </div>
           );
