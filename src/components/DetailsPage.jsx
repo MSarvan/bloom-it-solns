@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "../styles/DetailsPage.scss";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { toast } from "react-toastify";
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -22,6 +23,7 @@ const DetailsPage = () => {
           setMovieInfo(response?.data);
           setIsLoading(false);
         } catch (error) {
+          toast.error(error.message);
           console.log(error, "Error in fetching movie details");
           setIsLoading(false);
         }

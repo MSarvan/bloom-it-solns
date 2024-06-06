@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const API_KEY = "693677a4";
@@ -30,6 +31,7 @@ const HomePage = () => {
         setTotalPages(Math.ceil(totalResults / 10));
         setIsLoading(false);
       } catch (error) {
+        toast.error(error.message);
         console.log(error, "Error while fetching movies");
         setIsLoading(false);
       }
@@ -57,55 +59,61 @@ const HomePage = () => {
         <button onClick={handleClick}>{!search ? "Search" : "Clear"}</button>{" "}
       </div>
       <div className="movies-container">
-        {isLoading
-          ? Array(10)
-              .fill("")
-              .map((e, i) => {
-                return (
-                  <div className="movie-card" key={i}>
-                    <div className="movie-image">
-                      <Skeleton width={"100%"} height={"100%"} />
-                    </div>
-                    <Skeleton width={225} height={40} />
-                    <Skeleton width={200} height={30} />
-                  </div>
-                );
-              })
-          : movieData?.map((e, i) => {
+        {isLoading ? (
+          Array(10)
+            .fill("")
+            .map((e, i) => {
               return (
-                <div
-                  className="movie-card"
-                  key={e?.imdbID}
-                  onClick={() => {
-                    navigate(`/${e?.imdbID}`);
-                  }}
-                >
+                <div className="movie-card" key={i}>
                   <div className="movie-image">
-                    <img src={e?.Poster} alt="" />
+                    <Skeleton width={"100%"} height={"100%"} />
                   </div>
-                  <h3>{e?.Title}</h3>
-                  <div>Released year: {e?.Year}</div>
+                  <Skeleton width={225} height={40} />
+                  <Skeleton width={200} height={30} />
                 </div>
               );
-            })}
+            })
+        ) : movieData?.length > 0 ? (
+          movieData?.map((e, i) => {
+            return (
+              <div
+                className="movie-card"
+                key={e?.imdbID}
+                onClick={() => {
+                  navigate(`/${e?.imdbID}`);
+                }}
+              >
+                <div className="movie-image">
+                  <img src={e?.Poster} alt="" />
+                </div>
+                <h3>{e?.Title}</h3>
+                <div>Released year: {e?.Year}</div>
+              </div>
+            );
+          })
+        ) : (
+          <div className="no-results-container">No results found.</div>
+        )}
       </div>
-      <div className="pagination-caontainer">
-        <button
-          disabled={page === 1}
-          onClick={() => setPage(page > 1 ? page - 1 : 1)}
-        >
-          Previous
-        </button>
-        <div>
-          Page {page} of {totalPages}
+      {movieData?.length > 0 && (
+        <div className="pagination-container">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page > 1 ? page - 1 : 1)}
+          >
+            Previous
+          </button>
+          <div>
+            Page {page} of {totalPages}
+          </div>
+          <button
+            onClick={() => setPage(page < totalPages ? page + 1 : totalPages)}
+            disabled={page === totalPages}
+          >
+            Next
+          </button>
         </div>
-        <button
-          onClick={() => setPage(page < totalPages ? page + 1 : totalPages)}
-          disabled={page === totalPages}
-        >
-          Next
-        </button>
-      </div>
+      )}
     </div>
   );
 };

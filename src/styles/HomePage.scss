@@ -58,9 +58,15 @@
         }
       }
     }
+
+    .no-results-container {
+      width: calc(100% - 4rem);
+      text-align: center;
+      position: absolute;
+    }
   }
 
-  .pagination-caontainer {
+  .pagination-container {
     width: 100%;
     height: 3rem;
     display: flex;
@@ -74,12 +80,11 @@
       border-radius: 10px;
       border: none;
       cursor: pointer;
-      
+
       &:disabled {
         cursor: not-allowed;
         opacity: 0.5;
       }
     }
-
   }
 }
