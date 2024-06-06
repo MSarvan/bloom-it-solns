@@ -92,10 +92,7 @@ const HomePage = () => {
       <div className="pagination-caontainer">
         <button
           disabled={page === 1}
-          onClick={() => {
-            setPage(page > 1 ? page - 1 : 1);
-            console.log("working");
-          }}
+          onClick={() => setPage(page > 1 ? page - 1 : 1)}
         >
           Previous
         </button>
